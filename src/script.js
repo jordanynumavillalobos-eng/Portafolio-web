@@ -23,6 +23,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // Cierra el menú al hacer clic en un enlace (útil en móvil)
     primaryNav.querySelectorAll('.nav-link').forEach((link) => {
       link.addEventListener('click', () => {
+        if (link.dataset.section === 'hero') {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
         primaryNav.classList.remove('is-open');
         navToggle.classList.remove('is-open');
         navToggle.setAttribute('aria-expanded', 'false');

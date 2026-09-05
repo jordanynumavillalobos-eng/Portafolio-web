@@ -45,16 +45,34 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   if ('IntersectionObserver' in window && sections.length) {
+    const visibleSections = new Map();
+
+    const updateActiveLink = () => {
+      const visible = sections
+        .filter((section) => visibleSections.has(section.id))
+        .sort((a, b) => {
+          const ratioDifference =
+            visibleSections.get(b.id) - visibleSections.get(a.id);
+
+          return ratioDifference || sections.indexOf(a) - sections.indexOf(b);
+        })[0];
+
+      if (visible) {
+        setActiveLink(visible.id);
+      }
+    };
+
     const observer = new IntersectionObserver(
       (entries) => {
-        // Elige la sección más visible en este momento
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            visibleSections.set(entry.target.id, entry.intersectionRatio);
+          } else {
+            visibleSections.delete(entry.target.id);
+          }
+        });
 
-        if (visible) {
-          setActiveLink(visible.target.id);
-        }
+        updateActiveLink();
       },
       {
         root: null,

@@ -199,11 +199,6 @@ button {
   color: var(--color-text);
 }
 
-.nav-link.is-active {
-  color: var(--color-accent);
-  background-color: var(--color-accent-soft);
-}
-
 .nav-toggle {
   display: none;
   flex-direction: column;

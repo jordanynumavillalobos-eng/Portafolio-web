@@ -196,10 +196,6 @@ button {
 }
 
 .nav-link:hover {
-  color: var(--color-text);
-}
-
-.nav-link.is-active {
   color: var(--color-accent);
   background-color: var(--color-accent-soft);
 }

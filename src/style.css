@@ -500,18 +500,26 @@ button {
 }
 
 .contact-info {
-  max-width: 46ch;
-}
-
-.contact-lead {
-  color: var(--color-text-secondary);
-  margin-bottom: 28px;
+  max-width: 760px;
 }
 
 .contact-list {
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.contact-list li {
+  padding: 18px;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+
+.contact-list li:hover {
+  border-color: var(--color-accent-border);
+  transform: translateY(-2px);
 }
 
 .contact-label {
@@ -522,13 +530,14 @@ button {
 }
 
 .contact-value {
+  display: block;
   font-weight: 600;
   word-break: break-word;
   transition: color 0.15s ease;
 }
 
 .contact-value:hover {
-  color: var(--color-accent);
+  color: #ff744f;
 }
 
 /* =========================================================
@@ -625,6 +634,10 @@ button {
   }
 
   .projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-list {
     grid-template-columns: 1fr;
   }
 
